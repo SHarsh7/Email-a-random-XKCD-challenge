@@ -42,7 +42,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                         <p>$baseUrl/$activecode</p>  
                                                         </body>
                                                  </html>";
-                                //TODO:Send verification Email
+                                $variEmail=new sendGridApi();
+                                $variEmail->sendVarificationMail($email,$body,$subject);
                                 //TODO:Make a .htaccess file for URL ($baseUrl/$activecode)
                                 
                         } else {

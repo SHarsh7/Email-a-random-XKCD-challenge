@@ -2,8 +2,6 @@
 
 namespace app;
 
-require_once dirname(__FILE__) . '/db_config.php';
-
 use mysqli;
 
 class User
@@ -13,7 +11,7 @@ class User
 
         public function __construct()
         {
-                $this->db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
+                $this->db = new mysqli(  getenv('DB_SERVER'), getenv('DB_USERNAME'),getenv('DB_PASSWORD'),     getenv('DB_DATABASE'));
 
                 if (mysqli_connect_errno()) {
                         echo "Error: Could not connect to database.";

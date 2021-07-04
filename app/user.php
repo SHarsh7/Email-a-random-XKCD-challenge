@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Models;
+namespace app;
 
 require_once dirname(__FILE__) . '/db_config.php';
 

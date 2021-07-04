@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteRule ^subscribeUser/([A-Za-z0-9()*-+./;'",`~%$]+)  subscribeUser.php?activecode=$1 [NC,L]
+
+
+
+
+
+

@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 $subject = "Email Verification";
                                 //todo:set base url
-                                $baseUrl="";
+                                $baseUrl="https://xkcdmailer.herokuapp.com/subscribeUser";
                                 $body = "<html>
                                                         <head>
                                                                 <meta name='viewport' content='width=device-width'>
@@ -39,12 +39,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                         <a href='$baseUrl/$activecode'>Here</a>
                                                         </p>
                                                         <p>Best Regards,<br />XKCD Team</p>
+                                                        <p>If in case above link isn't working then copy paste text given below in your browser.</p>
                                                         <p>$baseUrl/$activecode</p>  
                                                         </body>
                                                  </html>";
                                 $variEmail=new sendGridApi();
                                 $variEmail->sendVarificationMail($email,$body,$subject);
-                                //TODO:Make a .htaccess file for URL ($baseUrl/$activecode)
+                               
                                 
                         } else {
                                 $_SESSION['msg'] = "You are alerady registerd!";

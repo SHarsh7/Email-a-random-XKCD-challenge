@@ -1,2 +1,2 @@
 db_config.php
-*.cache
+/.phpunit.cache

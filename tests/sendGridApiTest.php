@@ -7,7 +7,7 @@ class sendGridApiTest extends TestCase
         public function testThatcanWesendVarificationmail()
         {
                 $sendVarEmail = new  \App\sendGridApi;
-                $email = "harshsheth9909@gmail.com";
+                $email = "";
                 $body = "hi";
                 $subject = "testing";
                 //* Set api key before testing

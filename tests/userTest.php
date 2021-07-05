@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 class userTest extends TestCase
 {
 
-        private $email = "hehe@gmail.com";
+        public  $email = "hehe@gmail.com";
 
         //*TEST 0
         public function testThatcanWeConnectToDb()

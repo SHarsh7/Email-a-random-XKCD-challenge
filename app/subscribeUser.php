@@ -10,9 +10,11 @@ if (isset($_GET['activecode'])) {
         //*Decrypt the data
         $decryptData = new encdec();
         $code = $decryptData->decrypt($_GET['activecode']);
-
+        echo $code;
+        
 
         $user = new user();
+        var_dump($user->updatedata($code));
         if ($user->updatedata($code)) {
                 echo "Your account is verified, you will start receiving our emails soon!";
         } else {

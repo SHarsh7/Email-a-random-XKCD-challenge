@@ -51,5 +51,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
         }
 }
-echo "<script> location.href='index.php'; </script>";
+// echo "<script> location.href='index.php'; </script>";
 die();

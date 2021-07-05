@@ -3,7 +3,7 @@ namespace app;
 
 require_once dirname(__FILE__).'/user.php';
 include dirname(__FILE__).'/validateForm.php';
-include dirname(__FILE__).'/sandGridApi.php';
+include dirname(__FILE__).'/sendGridApi.php';
 
  //TODO:integrate sendgrid api
 

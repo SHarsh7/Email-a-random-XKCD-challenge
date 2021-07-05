@@ -4,7 +4,6 @@ namespace app;
 require_once dirname(__FILE__).'/user.php';
 include dirname(__FILE__).'/validateForm.php';
 include dirname(__FILE__).'/sandGridApi.php';
-include dirname(__FILE__).'/encdec.php';
 
  //TODO:integrate sendgrid api
 
@@ -22,12 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $row = $result->fetch_assoc();
                                 $activecode = $row['activecode'];
 
-                                // * Encrypting activationcode 
-                                $encryptData=new encdec();
-                                $activecode=$encryptData->encrypt($activecode);
+                                // * Encoding activationcode 
+                                $activecode=base64_encode($activecode);
 
                                 $subject = "Email Verification";
-                                //todo:set base url
                                 $baseUrl="https://xkcdmailer.herokuapp.com/subscribeUser";
                                 $body = "<html>
                                                         <head>

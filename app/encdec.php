@@ -16,6 +16,7 @@ class encdec{
         {
                 $data=openssl_decrypt ($data, $this->ciphering,
 		$this->key, $this->options, $this->iv);
+                return $data;
                 
         }
 } 

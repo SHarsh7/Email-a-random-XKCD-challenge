@@ -3,17 +3,18 @@
 namespace app;
 
 require_once dirname(__FILE__) . '/user.php';
-require_once dirname(__FILE__) . '/encdec.php';
+require_once dirname(__FILE__) . '/validateForm.php';
 
 if (isset($_GET['activecode'])) {
 
-        //*Decrypt the data
-        $decryptData = new encdec();
-        $code=$_GET['activecode'];
+        //*Senitize the data
+        $senitize=new validateForm();
+        $code=$senitize->test_input($_GET['activecode']);
+
+        //* Decode the data
+        $code=base64_decode($code);
         echo $code;
         echo "<br/>";
-        $code = $decryptData->decrypt($code);
-        echo $code;
         
 
         $user = new user();

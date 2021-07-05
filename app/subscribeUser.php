@@ -2,22 +2,20 @@
 
 namespace app;
 
-require_once dirname(__FILE__).'/user.php';
-require_once dirname(__FILE__).'/encdec.php';
+require_once dirname(__FILE__) . '/user.php';
+require_once dirname(__FILE__) . '/encdec.php';
 
 if (isset($_GET['activecode'])) {
+
         //*Decrypt the data
-        $decryptData=new encdec();
-        $code=$decryptData->decrypt($code);
-        var_dump($code);
-        
+        $decryptData = new encdec();
+        $code = $decryptData->decrypt($_GET['activecode']);
+
+
         $user = new user();
-        var_dump($user->updatedata($code));
-        if($user->updatedata($code)){
+        if ($user->updatedata($code)) {
                 echo "Your account is verified, you will start receiving our emails soon!";
-        }
-        else{
+        } else {
                 echo "something went wrong";
         }
-       
 }

@@ -34,7 +34,8 @@ class sendGridApi
                         'x-smtpapi' => json_encode($this->js),
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
-                curl_exec($this->session);
+                $response=curl_exec($this->session);
+                var_dump($response);
                 // if(curl_exec($this->session)){
                 //         return true;
                 // }
@@ -44,7 +45,7 @@ class sendGridApi
                 //         $deleteUser->deletedata($email);
                 // }
                 curl_close($this->session);
-                echo "<script> location.href='index.php'; </script>";
+                // echo "<script> location.href='index.php'; </script>";
         }
       
 }

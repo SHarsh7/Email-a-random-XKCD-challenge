@@ -34,14 +34,15 @@ class sendGridApi
                         'x-smtpapi' => json_encode($this->js),
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
-                if(curl_exec($this->session)){
-                        return true;
-                }
-                else{
-                        //* If varification mail can't be sent then delete the data
-                        $deleteUser=new User();
-                        $deleteUser->deletedata($email);
-                }
+                curl_exec($this->session);
+                // if(curl_exec($this->session)){
+                //         return true;
+                // }
+                // else{
+                //         //* If varification mail can't be sent then delete the data
+                //         $deleteUser=new User();
+                //         $deleteUser->deletedata($email);
+                // }
                 curl_close($this->session);
                 echo "<script> location.href='index.php'; </script>";
         }

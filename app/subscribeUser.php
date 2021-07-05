@@ -13,14 +13,12 @@ if (isset($_GET['activecode'])) {
 
         //* Decode the data
         $code=base64_decode($code);
-        echo $code;
-        echo "<br/>";
+    
         
 
         $user = new user();
-        var_dump($user->updatedata($code));
         if ($user->updatedata($code)) {
-                echo "Your account is verified, you will start receiving our emails soon!";
+                echo "<h3>Your account is verified, you will start receiving our emails soon!</h3>";
         } else {
                 echo "something went wrong";
         }

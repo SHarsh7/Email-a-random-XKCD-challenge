@@ -9,7 +9,10 @@ if (isset($_GET['activecode'])) {
 
         //*Decrypt the data
         $decryptData = new encdec();
-        $code = $decryptData->decrypt($_GET['activecode']);
+        $code=$_GET['activecode'];
+        echo $code;
+        echo "<br/>";
+        $code = $decryptData->decrypt($code);
         echo $code;
         
 

@@ -35,6 +35,7 @@ class sendGridApi
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response=curl_exec($this->session);
+                curl_close($this->session);
                 if(strpos($response, 'success')){
                         return true;
                 }
@@ -43,7 +44,28 @@ class sendGridApi
                         $deleteUser=new User();
                         $deleteUser->deletedata($email);
                 }
+                
+        }
+          public function comicSender($email, $body, $subject, $file)
+        {
+                $fileName = basename($file);
+                $filePath = dirname(__FILE__);
+                $params = array(
+                        'to'        => $email,
+                        'from'      => "noobbot12367@gmail.com",
+                        'fromname'  => "XKCD",
+                        'subject'   => $subject,
+                        'html'      => $body,
+                        'x-smtpapi' => json_encode($this->js),
+                        'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName
+                );
+                curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
+                $response=curl_exec($this->session);
                 curl_close($this->session);
+                unlink($file);
+                return $response? true:false;
+                
+             
         }
       
 }

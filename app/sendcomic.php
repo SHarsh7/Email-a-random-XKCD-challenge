@@ -24,7 +24,6 @@ class sendComic
         }
         public function fetchdata()
         {
-                echo "in fetch data";
                 $fetch_query = "SELECT `email`,`activecode`FROM `auth` WHERE `userstatus`='subscribed' ";
                 $result = $this->db->query($fetch_query);
                 $numRow = $result->num_rows;
@@ -49,9 +48,9 @@ class sendComic
                 $data = $comic->fetchComic();
 
 
-
-                $subject = "your comic here";
-                $baseUrl = "https://php-xkcd-mailer.herokuapp.com/unsubscribeUser";
+                //TODO: set baseurl & Encode "code" & modify htaceess($baseUrl/$code)
+                $subject = $data[2];
+                $baseUrl = "";
                 $txt = "<html>
                                 <head>
                                         <meta name='viewport' content='width=device-width'>

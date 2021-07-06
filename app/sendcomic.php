@@ -5,8 +5,8 @@ namespace app;
 use mysqli;
 
 
-require_once dirname(__FILE__).'XKCDapi.php';
-require_once dirname(__FILE__).'sendGridApi.php';
+require_once dirname(__FILE__).'/XKCDapi.php';
+require_once dirname(__FILE__).'/sendGridApi.php';
 
 
 class sendComic

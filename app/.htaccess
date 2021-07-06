@@ -1,5 +1,6 @@
 RewriteEngine on
 RewriteRule ^subscribeUser/([A-Za-z0-9()*-+./;'",`~%$]+)  subscribeUser.php?activecode=$1 [NC,L]
+RewriteRule ^unsubscribeUser/([A-Za-z0-9()*-+./;'",`~%$]+)  unsubscribeUser.php?user_id=$1 [NC,L]
 
 
 

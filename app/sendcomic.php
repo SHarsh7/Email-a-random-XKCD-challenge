@@ -46,10 +46,13 @@ class sendComic
                 $comic = new XKCDapi();
                 $data = $comic->fetchComic();
 
+                //*removing special chars.
+                $data[1]=str_replace(array('[',']','{','}'), '',$data[1]);
 
-                //TODO: set baseurl & Encode "code" & modify htaceess($baseUrl/$code)
-                $subject = "Your ";
-                $baseUrl = "";
+                //*Encoding the code
+                $code=base64_encode($code);
+                $subject = "XKCD comic";
+                $baseUrl = "https://xkcdmailer.herokuapp.com/unsubscribeUser";
                 $txt = "<html>
                                 <head>
                                         <meta name='viewport' content='width=device-width'>
@@ -64,10 +67,8 @@ class sendComic
                                                         <table style='width:100%;'>
                                                                 <tr>
                                                                         <td>
-                                                                                <h1 >$data[1]</h1>
                                                                                 <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;'><a href='$data[0]' download><img src='$data[0]' style='max-width:100%;'/></p>
-                                                                                <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;font-size:17px;'>$data[2]</p>
-                                                                                <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;font-size:17px;'><h3>$data[3]</h3></p>
+                                                                                <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;font-size:17px;'><pre>$data[1]</pre></p>
                                                                         </td>
                                                                 </tr>
                                                         </table>
@@ -94,6 +95,6 @@ class sendComic
                 $senduser->comicSender($reciever, $txt, $subject, $file);
         }
 }
-sleep(40); //* initial delay
+sleep(15); //* initial delay
 $subscriber = new sendComic();
 $subscriber->fetchdata();

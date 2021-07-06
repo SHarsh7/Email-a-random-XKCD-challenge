@@ -6,7 +6,7 @@ use mysqli;
 
 
 require_once "XKCDapi.php";
-require_once "sandGridApi.php";
+require_once "sendGridApi.php";
 
 
 class sendComic

@@ -5,8 +5,8 @@ namespace app;
 use mysqli;
 
 
-require_once "XKCDapi.php";
-require_once "sendGridApi.php";
+require_once dirname(__FILE__).'XKCDapi.php';
+require_once dirname(__FILE__).'sendGridApi.php';
 
 
 class sendComic
@@ -43,13 +43,12 @@ class sendComic
         public function Email($reciever, $code)
         {
 
-                echo "in email";
                 $comic = new XKCDapi();
                 $data = $comic->fetchComic();
 
 
                 //TODO: set baseurl & Encode "code" & modify htaceess($baseUrl/$code)
-                $subject = $data[2];
+                $subject = "Your ";
                 $baseUrl = "";
                 $txt = "<html>
                                 <head>
@@ -68,6 +67,7 @@ class sendComic
                                                                                 <h1 >$data[1]</h1>
                                                                                 <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;'><a href='$data[0]' download><img src='$data[0]' style='max-width:100%;'/></p>
                                                                                 <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;font-size:17px;'>$data[2]</p>
+                                                                                <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;font-size:17px;'><h3>$data[3]</h3></p>
                                                                         </td>
                                                                 </tr>
                                                         </table>

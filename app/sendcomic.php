@@ -71,9 +71,9 @@ class sendComic
                                                                 <tr>
                                                                         <td>
                                                                                 <h2>$data[2]</h2>
-                                                                                <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;'><a href='$data[0]' download><img src='$data[0]' style='max-width:100%;'/></p>
-                                                                                <p style='margin-bottom:10px;font-weight:normal;line-height:1.6;font-size:17px;'><pre>$data[1]</pre></p>
-                                                                                <p style='margin-bottom:10px;font-weight:normal;line-height:1.6;font-size:17px;'><h3>$data[3]</h3></p>
+                                                                                <p style='margin-bottom:10px;'><a href='$data[0]' download><img src='$data[0]' style='max-width:100%;'/></p>
+                                                                                <p style='margin-bottom:10px'><pre><h4>$data[1]</h4></pre></p>
+                                                                                <p style='margin-bottom:10px'><h3>$data[3]</h3></p>
                                                                         </td>
                                                                 </tr>
                                                         </table>

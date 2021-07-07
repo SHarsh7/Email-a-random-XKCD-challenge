@@ -27,6 +27,8 @@ class XKCDapi
                 var_dump($resp);
                 $imgAttch = $data->img;
                 $text = $data->transcript;
-                return [$imgAttch, $text];
+                $title=$data->title;
+                $altTxt=$data->alt;
+                return [$imgAttch, $text,$title,$altTxt];
         }
 }

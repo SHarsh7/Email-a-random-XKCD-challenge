@@ -46,8 +46,11 @@ class sendComic
                 $comic = new XKCDapi();
                 $data = $comic->fetchComic();
 
-                //*removing special chars.
-                $data[1]=str_replace(array('[',']','{','}'), '',$data[1]);
+                //*removing special chars & title text
+                $start=strpos($data[1],'{');
+                $end=strlen($data[1]);
+                $data[1]=trim($data[1],substr($data[1],$start,$end));
+                $data[1]= str_replace(array('[',']','{','}'),'',$data[1]);
 
                 //*Encoding the code
                 $code=base64_encode($code);
@@ -67,8 +70,10 @@ class sendComic
                                                         <table style='width:100%;'>
                                                                 <tr>
                                                                         <td>
+                                                                                <h2>$data[2]</h2>
                                                                                 <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;'><a href='$data[0]' download><img src='$data[0]' style='max-width:100%;'/></p>
-                                                                                <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;font-size:17px;'><pre>$data[1]</pre></p>
+                                                                                <p style='margin-bottom:10px;font-weight:normal;line-height:1.6;font-size:17px;'><pre>$data[1]</pre></p>
+                                                                                <p style='margin-bottom:10px;font-weight:normal;line-height:1.6;font-size:17px;'><h3>$data[3]</h3></p>
                                                                         </td>
                                                                 </tr>
                                                         </table>
@@ -95,6 +100,6 @@ class sendComic
                 $senduser->comicSender($reciever, $txt, $subject, $file);
         }
 }
-sleep(15); //* initial delay
+sleep(60); //* initial delay
 $subscriber = new sendComic();
 $subscriber->fetchdata();

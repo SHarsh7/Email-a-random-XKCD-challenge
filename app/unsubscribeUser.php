@@ -18,11 +18,10 @@ if (isset($_GET['user_id'])) {
         $delete_query->bind_param("s", $code);
 
         if($delete_query->execute()){
-                   $_SESSION['msg'] = "You have successfully unsubscribed";
+                echo "You have successfully unsubscribed! You can join us again by clicking <a href='https://xkcdmailer.herokuapp.com/index'>Here</a>";
         }
      
 } else {
         echo "Something went wrong!";
 }
-echo "<script> location.href='index.php'; </script>";
 die();

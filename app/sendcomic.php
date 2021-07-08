@@ -5,8 +5,8 @@ namespace app;
 use mysqli;
 
 
-require_once dirname(__FILE__).'/XKCDapi.php';
-require_once dirname(__FILE__).'/sendGridApi.php';
+require_once dirname(__FILE__) . '/XKCDapi.php';
+require_once dirname(__FILE__) . '/sendGridApi.php';
 
 
 class sendComic
@@ -24,14 +24,14 @@ class sendComic
         }
         public function fetchdata()
         {
-                $fetch_query = "SELECT `email`,`activecode`FROM `auth` WHERE `userstatus`='subscribed' ";
-                $result = $this->db->query($fetch_query);
-                $numRow = $result->num_rows;
-
-                $row = $result->fetch_all();
-                for ($i = 0; $i < $numRow; $i++) {
-                        $to = $row[$i][0];
-                        $code = $row[$i][1];
+                if ($fetch_query = $this->db->prepare("SELECT `email`,`activecode`FROM `auth` WHERE `userstatus`=? ")) {
+                        $status = "subscribed";
+                        $fetch_query->bind_param("s", $status);
+                        $fetch_query->execute();
+                        $fetch_result = $fetch_query->get_result();
+                        $row = $fetch_result->fetch_assoc();
+                        $to = $row['email'];
+                        $code = $row['activecode'];
                         $this->Email($to, $code);
                 }
                 sleep(300); //* 5 min delay 
@@ -47,13 +47,13 @@ class sendComic
                 $data = $comic->fetchComic();
 
                 //*removing special chars & title text
-                $start=strpos($data[1],'{');
-                $end=strlen($data[1]);
-                $data[1]=trim($data[1],substr($data[1],$start,$end));
-                $data[1]= str_replace(array('[',']','{','}'),'',$data[1]);
+                $start = strpos($data[1], '{');
+                $end = strlen($data[1]);
+                $data[1] = trim($data[1], substr($data[1], $start, $end));
+                $data[1] = str_replace(array('[', ']', '{', '}'), '', $data[1]);
 
                 //*Encoding the code
-                $code=base64_encode($code);
+                $code = base64_encode($code);
                 $subject = "XKCD comic";
                 $baseUrl = "https://xkcdmailer.herokuapp.com/unsubscribeUser";
                 $txt = "<html>
@@ -100,6 +100,5 @@ class sendComic
                 $senduser->comicSender($reciever, $txt, $subject, $file);
         }
 }
-sleep(60); //* initial delay
 $subscriber = new sendComic();
 $subscriber->fetchdata();

@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $activecode=base64_encode($activecode);
 
                                 $subject = "Email Verification";
-                                $baseUrl="https://xkcdmailer.herokuapp.com/subscribeUser";
+                                 $baseUrl= "http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'] . "/subscribeUser";
                                 $body = "<html>
                                                         <head>
                                                                 <meta name='viewport' content='width=device-width'>
@@ -45,11 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                
                                 
                         } else {
-                                $_SESSION['msg'] = "You are alerady registerd!";
+                                $_SESSION['msg'] = "You are already registered!";
 
                         }
                 }
         }
 }
-echo "<script> location.href='index.php'; </script>";
+$url="http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'] . "/index";
+echo "<script> location.href='$url'; </script>";
 die();

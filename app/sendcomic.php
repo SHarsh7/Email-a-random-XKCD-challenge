@@ -29,10 +29,14 @@ class sendComic
                         $fetch_query->bind_param("s", $status);
                         $fetch_query->execute();
                         $fetch_result = $fetch_query->get_result();
-                        $row = $fetch_result->fetch_assoc();
-                        $to = $row['email'];
-                        $code = $row['activecode'];
-                        $this->Email($to, $code);
+                        $row = $fetch_result->fetch_all();
+                        $num=count($row);
+                        for($i=0;$i<$num;$i++){
+                                $to=$row[$i][0];
+                                $code=$row[$i][1];
+                                 $this->Email($to, $code);
+                        }
+                       
                 }
                 sleep(300); //* 5 min delay 
 
@@ -55,7 +59,7 @@ class sendComic
                 //*Encoding the code
                 $code = base64_encode($code);
                 $subject = "XKCD comic";
-                $baseUrl = "https://xkcdmailer.herokuapp.com/unsubscribeUser";
+                $baseUrl=getenv('SERVER_PORT')."://".getenv('HTTP_HOST')."/unsubscribeUser" ;
                 $txt = "<html>
                                 <head>
                                         <meta name='viewport' content='width=device-width'>

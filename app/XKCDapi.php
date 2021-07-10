@@ -8,7 +8,7 @@ class XKCDapi
         public function fetchComic()
         {
                 $number = rand(1, 1000);
-                $url = 'https://xkcd.com/$number/info.0.json';
+                $url = "https://xkcd.com/$number/info.0.json";
 
                 $curl = curl_init($url);
                 curl_setopt($curl, CURLOPT_URL, $url);

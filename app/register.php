@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $user = new User();
                         if ($user->reg_user($_POST["email"])) {
                                 $email=$_POST["email"];
-
+                                $emailUser= strstr($email, '@', true);
                                 //* Fetching data
                                 $result = $user->fetchdata($email);
                                 $row = $result->fetch_assoc();
@@ -32,8 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                                 <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>
                                                         </head>
                                                         <body>
+                                                        <p>Hi,$emailUser</p>
+                                                        <p>Thank you for showing interest in our product now after you click on the link given below, you will start receiving our emails(A random XKCD webcomic) every 5 minutes, this may take a while(around 5 to 6 minutes or earlier). So take a deep breath and enjoy.</p>
+
                                                         <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;padding:15px;background-color:#ecf8ff;margin-bottom:15px;'>Please click on the link to verify yourself 
-                                                        <a href='$baseUrl/$activecode'>Here</a>
+                                                        <a href='$baseUrl/$activecode'>Subscribe</a>
                                                         </p>
                                                         <p>Best Regards,<br />XKCD Team</p>
                                                         <p>If in case above link isn't working then copy paste text given below in your browser.</p>

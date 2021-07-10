@@ -16,7 +16,7 @@ class User
                
 
                 if (mysqli_connect_errno()) {
-                        echo "Error: Could not connect to database.";
+                        echo 'Error: Could not connect to database.';
                         exit;
                 }
         }
@@ -27,8 +27,8 @@ class User
         }
         public function fetchdata($email)
         {
-                if ($fetch_query = $this->db->prepare("SELECT `id`,`activecode`,`emailstatus` FROM `auth` WHERE `email` =?")) {
-                        $fetch_query->bind_param("s", $email);
+                if ($fetch_query = $this->db->prepare('SELECT `id`,`activecode`,`emailstatus` FROM `auth` WHERE `email` =?')) {
+                        $fetch_query->bind_param('s', $email);
                         $fetch_query->execute();
                         $fetch_result = $fetch_query->get_result();
                         return $fetch_result;
@@ -36,16 +36,16 @@ class User
         }
         public function insertdata($email, $code)
         {
-                if ($insert_query = $this->db->prepare("INSERT INTO `auth` (`email`, `activecode`) VALUES (?,?)")) {
-                        $insert_query->bind_param("ss", $email, $code);
+                if ($insert_query = $this->db->prepare('INSERT INTO `auth` (`email`, `activecode`) VALUES (?,?)')) {
+                        $insert_query->bind_param('ss', $email, $code);
                         $insert_result = $insert_query->execute();
                         return $insert_result;
                 }
         }
         public function deletedata($email)
         {
-                if ($delete_query = $this->db->prepare("DELETE FROM `auth` WHERE `email` = ? ")) {
-                        $delete_query->bind_param("s", $email);
+                if ($delete_query = $this->db->prepare('DELETE FROM `auth` WHERE `email` = ? ')) {
+                        $delete_query->bind_param('s', $email);
                         $delete_query->execute();
                 }
         }
@@ -54,7 +54,7 @@ class User
 
                 $update_query = $this->db->prepare("UPDATE auth SET  emailstatus = 'verified' , userstatus='subscribed' WHERE activecode = ?");
                 if ($update_query) {
-                        $update_query->bind_param("s", $code);
+                        $update_query->bind_param('s', $code);
                         $update_result = $update_query->execute();
                         return $update_result;
                 }

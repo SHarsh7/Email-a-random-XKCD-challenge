@@ -27,8 +27,8 @@ class sendGridApi
         {
                 $params = array(
                         'to'        => $email,
-                        'from'      => "noobbot12367@gmail.com",
-                        'fromname'  => "XKCD",
+                        'from'      => 'noobbot12367@gmail.com',
+                        'fromname'  => 'XKCD',
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
@@ -52,8 +52,8 @@ class sendGridApi
                 $filePath = dirname(__FILE__);
                 $params = array(
                         'to'        => $email,
-                        'from'      => "noobbot12367@gmail.com",
-                        'fromname'  => "XKCD",
+                        'from'      => 'noobbot12367@gmail.com',
+                        'fromname'  => 'XKCD',
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),

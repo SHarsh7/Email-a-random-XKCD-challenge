@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 class userTest extends TestCase
 {
 
-        public  $email = "hehe@gmail.com";
+        public  $email = 'hehe@gmail.com';
 
         //*TEST 0
         public function testThatcanWeConnectToDb()
@@ -18,14 +18,14 @@ class userTest extends TestCase
         public function testThatcanWeInsertData()
         {
                 $user = new \App\User;
-                $code = "1234$^";
+                $code = '1234$^';
                 $this->assertTrue($user->insertdata($this->email, $code));
         }
         //*TEST 2
         public function testThatcanWeUpdateData()
         {
                 $user = new \App\User;
-                 $code = "1234$^";
+                 $code = '1234$^';
                 $this->assertTrue($user->updatedata($code));
         }
         //*TEST 3

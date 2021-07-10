@@ -18,15 +18,15 @@ class sendComic
                 $this->db = new mysqli(getenv('DB_SERVER'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'));
 
                 if (mysqli_connect_errno()) {
-                        echo "Error: Could not connect to database.";
+                        echo 'Error: Could not connect to database.';
                         exit;
                 }
         }
         public function fetchdata()
         {
-                if ($fetch_query = $this->db->prepare("SELECT `email`,`activecode`FROM `auth` WHERE `userstatus`=? ")) {
-                        $status = "subscribed";
-                        $fetch_query->bind_param("s", $status);
+                if ($fetch_query = $this->db->prepare('SELECT `email`,`activecode`FROM `auth` WHERE `userstatus`=? ')) {
+                        $status = 'subscribed';
+                        $fetch_query->bind_param('s', $status);
                         $fetch_query->execute();
                         $fetch_result = $fetch_query->get_result();
                         $row = $fetch_result->fetch_all();
@@ -58,8 +58,8 @@ class sendComic
 
                 //*Encoding the code
                 $code = base64_encode($code);
-                $subject = "XKCD comic";
-                $baseUrl=getenv('SERVER_PORT')."://".getenv('HTTP_HOST')."/unsubscribeUser" ;
+                $subject = 'XKCD comic';
+                $baseUrl=getenv('SERVER_PORT').'://'.getenv('HTTP_HOST').'/unsubscribeUser' ;
                 $txt = "<html>
                                 <head>
                                         <meta name='viewport' content='width=device-width'>

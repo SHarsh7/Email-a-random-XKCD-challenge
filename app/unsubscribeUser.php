@@ -14,15 +14,15 @@ if (isset($_GET['user_id'])) {
         //* Decoding the data
         $code=base64_decode($code);
         $user = new User();
-        $delete_query = $user->db->prepare("DELETE FROM `auth` WHERE `activecode` = ? ");
-        $delete_query->bind_param("s", $code);
+        $delete_query = $user->db->prepare('DELETE FROM `auth` WHERE `activecode` = ? ');
+        $delete_query->bind_param('s', $code);
 
         if($delete_query->execute()){
-                 $url="http" . (($_SERVER['SERVER_PORT'] == 443) ? "s" : "") . "://" . $_SERVER['HTTP_HOST'] . "/index";
+                 $url='http' . (($_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/index';
                 echo "You have successfully unsubscribed! You can join us again by clicking <a href='$url'>Here</a>";
         }
      
 } else {
-        echo "Something went wrong!";
+        echo 'Something went wrong!';
 }
 die();

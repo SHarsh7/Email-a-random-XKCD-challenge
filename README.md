@@ -30,5 +30,7 @@ Users can unsubscribe from these recurring emails at any point of time. Unsubscr
 
 **Heroku-buildpack:** <a href="https://github.com/timanovsky/subdir-heroku-buildpack">subdir-heroku-buildpack</a>
 
+**CORS:** <a href="https://cors-anywhere.herokuapp.com/corsdemo">cors-anywhere</a>
+
 
   

@@ -32,4 +32,4 @@ Users can unsubscribe from these recurring emails at any point of time. Unsubscr
 
 ## Work-flow
 
-<img src="./app/Assets/Images/workflow.png" width="600px" height="400px" alt="can't">
+<img src="./app/Assets/Images/workflow.png" width="700px" height="450px" alt="can't">

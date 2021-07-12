@@ -19,6 +19,7 @@ if (isset($_GET['activecode'])) {
         //* Decode the data
         $decode=new encdec();
         $code=$decode->dec($code);
+         var_dump($code);
     
         
 

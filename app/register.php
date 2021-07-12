@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 // * Encoding activationcode 
                                 $encode=new encdec();
                                 $activecode=$encode->enc($activecode);
-                                $activecode=rawurlencode($activecode);
+                                $activecode=bin2hex($activecode);
 
                                 $subject = 'Email Verification';
                                  $baseUrl= 'http' . (($_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/subscribeUser';

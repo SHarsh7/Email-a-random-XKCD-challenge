@@ -16,7 +16,7 @@ if (isset($_GET['activecode'])) {
         // $code=$senitize->test_input($_GET['activecode']);
         $code=$_GET['activecode'];
         var_dump($code);
-        $code=rawurldecode($code);
+        $code=hex2bin($code);
         var_dump($code);
         //* Decode the data
         $decode=new encdec();

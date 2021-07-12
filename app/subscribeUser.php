@@ -15,6 +15,7 @@ if (isset($_GET['activecode'])) {
         $senitize=new validateForm();
         // $code=$senitize->test_input($_GET['activecode']);
         $code=$_GET['activecode'];
+        var_dump($code);
         $code=rawurldecode($code);
         var_dump($code);
         //* Decode the data

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 $activecode=bin2hex($activecode);
 
                                 $subject = 'Email Verification';
-                                 $baseUrl= 'http' . ((isset($_SERVER['SERVER_PORT']) == 443) ? 's' : '') . '://' . isset($_SERVER['HTTP_HOST']) . '/subscribeUser';
+                                 $baseUrl= 'http' . ((isset($_SERVER['SERVER_PORT'])&&$_SERVER['SERVER_PORT']== 443) ? 's' : '') . '://' . (isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'') . '/subscribeUser';
                                 $body = "<html>
                                                         <head>
                                                                 <meta name='viewport' content='width=device-width'>

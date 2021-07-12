@@ -12,7 +12,7 @@ if (isset($_GET['activecode'])) {
 
         //*Senitize the data
         $senitize=new validateForm();
-        // $code=$senitize->test_input($_GET['activecode']);
+        $code=$senitize->test_input($_GET['activecode']);
         $code=$_GET['activecode'];
         $code=hex2bin($code);
 

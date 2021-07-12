@@ -2,17 +2,23 @@
 
 namespace app;
 
+use encdec;
+
 require_once dirname(__FILE__) . '/user.php';
 require_once dirname(__FILE__) . '/validateForm.php';
+require_once dirname(__FILE__).'/encdec.php';
+
 
 if (isset($_GET['activecode'])) {
 
         //*Senitize the data
         $senitize=new validateForm();
         $code=$senitize->test_input($_GET['activecode']);
+        $code=rawurldecode($code);
 
         //* Decode the data
-        $code=base64_decode($code);
+        $decode=new encdec();
+        $decode->dec($code);
     
         
 

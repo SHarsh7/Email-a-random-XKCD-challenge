@@ -1,9 +1,12 @@
 <?php
 namespace app;
 
+use encdec;
+
 require_once dirname(__FILE__).'/user.php';
 include dirname(__FILE__).'/validateForm.php';
 require_once dirname(__FILE__).'/sendGridApi.php';
+require_once dirname(__FILE__).'/encdec.php';
 
  
 
@@ -22,7 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 $activecode = $row['activecode'];
 
                                 // * Encoding activationcode 
-                                $activecode=base64_encode($activecode);
+                                $encode=new encdec();
+                                $activecode=$encode->enc($activecode);
+                                $activecode=rawurlencode($activecode);
 
                                 $subject = 'Email Verification';
                                  $baseUrl= 'http' . (($_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/subscribeUser';

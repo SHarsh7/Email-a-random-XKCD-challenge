@@ -1,5 +1,6 @@
 <?php
 namespace app;
+session_start();
 
 
 require_once dirname(__FILE__).'/user.php';

@@ -15,10 +15,10 @@ if (isset($_GET['activecode'])) {
         $senitize=new validateForm();
         $code=$senitize->test_input($_GET['activecode']);
         $code=rawurldecode($code);
-
+        var_dump($code);
         //* Decode the data
         $decode=new encdec();
-        $decode->dec($code);
+        $code=$decode->dec($code);
     
         
 

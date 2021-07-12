@@ -23,7 +23,7 @@ if (isset($_GET['user_id'])) {
         $delete_query->bind_param('s', $code);
 
         if($delete_query->execute()){
-                 $url='http' . (($_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/index';
+                 $url='http' . ((isset($_SERVER['SERVER_PORT']) == 443) ? 's' : '') . '://' . isset($_SERVER['HTTP_HOST']) . '/index';
                 echo "You have successfully unsubscribed! You can join us again by clicking <a href='$url'>Here</a>";
         }
      

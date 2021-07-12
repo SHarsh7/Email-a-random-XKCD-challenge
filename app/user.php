@@ -27,7 +27,8 @@ class User
         }
         public function fetchdata($email)
         {
-                if ($fetch_query = $this->db->prepare('SELECT `id`,`activecode`,`emailstatus` FROM `auth` WHERE `email` =?')) {
+                $fetch_query = $this->db->prepare('SELECT `id`,`activecode`,`emailstatus` FROM `auth` WHERE `email` =?');       
+                if ($fetch_query) {
                         $fetch_query->bind_param('s', $email);
                         $fetch_query->execute();
                         $fetch_result = $fetch_query->get_result();
@@ -36,7 +37,8 @@ class User
         }
         public function insertdata($email, $code)
         {
-                if ($insert_query = $this->db->prepare('INSERT INTO `auth` (`email`, `activecode`) VALUES (?,?)')) {
+                $insert_query = $this->db->prepare('INSERT INTO `auth` (`email`, `activecode`) VALUES (?,?)');
+                if ($insert_query) {
                         $insert_query->bind_param('ss', $email, $code);
                         $insert_result = $insert_query->execute();
                         return $insert_result;
@@ -44,7 +46,8 @@ class User
         }
         public function deletedata($email)
         {
-                if ($delete_query = $this->db->prepare('DELETE FROM `auth` WHERE `email` = ? ')) {
+                $delete_query = $this->db->prepare('DELETE FROM `auth` WHERE `email` = ? ');
+                if ($delete_query) {
                         $delete_query->bind_param('s', $email);
                         $delete_query->execute();
                 }

@@ -13,7 +13,7 @@ if (isset($_GET['activecode'])) {
 
         //*Senitize the data
         $senitize=new validateForm();
-        $code=$senitize->test_input($_GET['activecode']);
+        // $code=$senitize->test_input($_GET['activecode']);
         $code=rawurldecode($code);
         var_dump($code);
         //* Decode the data

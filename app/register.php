@@ -1,36 +1,38 @@
 <?php
+
 namespace app;
+
 session_start();
 
 
-require_once dirname(__FILE__).'/user.php';
-include dirname(__FILE__).'/validateForm.php';
-require_once dirname(__FILE__).'/sendGridApi.php';
-require_once dirname(__FILE__).'/encdec.php';
-
- 
+require_once dirname(__FILE__) . '/user.php';
+require_once dirname(__FILE__) . '/validateForm.php';
+require_once dirname(__FILE__) . '/sendGridApi.php';
+require_once dirname(__FILE__) . '/encdec.php';
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         if (isset($_POST['email'])) {
                 $validate = new validateForm();
                 if ($validate->validateEmail($_POST['email'])) {
                         $user = new User();
                         if ($user->reg_user($_POST['email'])) {
-                                $email=$_POST['email'];
-                                $emailUser= strstr($email, '@', true);
+                                $email = $_POST['email'];
+                                $emailUser = strstr($email, '@', true);
                                 //* Fetching data
                                 $result = $user->fetchdata($email);
                                 $row = $result->fetch_assoc();
                                 $activecode = $row['activecode'];
 
                                 // * Encoding activationcode 
-                                $encode=new encdec();
-                                $activecode=$encode->enc($activecode);
-                                $activecode=bin2hex($activecode);
+                                $encode = new encdec();
+                                $activecode = $encode->enc($activecode);
+                                $activecode = bin2hex($activecode);
 
                                 $subject = 'Email Verification';
-                                 $baseUrl= 'http' . ((isset($_SERVER['SERVER_PORT'])&&$_SERVER['SERVER_PORT']== 443) ? 's' : '') . '://' . (isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'') . '/subscribeUser';
+                                $baseUrl = 'http' . ((isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '') . '/subscribeUser';
                                 $body = "<html>
                                                         <head>
                                                                 <meta name='viewport' content='width=device-width'>
@@ -48,17 +50,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         <p>$baseUrl/$activecode</p>  
                                                         </body>
                                                  </html>";
-                                $variEmail=new sendGridApi();
-                                $variEmail->sendVarificationMail($email,$body,$subject);
-                               
-                                
+                                $variEmail = new sendGridApi();
+                                $variEmail->sendVarificationMail($email, $body, $subject);
                         } else {
                                 $_SESSION['msg'] = 'You are already registered!';
-
                         }
                 }
         }
 }
-$url='http' . ((isset($_SERVER['SERVER_PORT'])&&$_SERVER['SERVER_PORT']== 443) ? 's' : '') . '://' . (isset($_SERVER['HTTP_HOST'])?$_SERVER['HTTP_HOST']:'')  . '/index';
+$url = 'http' . ((isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '')  . '/index';
 echo "<script> location.href='$url'; </script>";
 die();

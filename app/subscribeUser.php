@@ -5,22 +5,22 @@ namespace app;
 
 require_once dirname(__FILE__) . '/user.php';
 require_once dirname(__FILE__) . '/validateForm.php';
-require_once dirname(__FILE__).'/encdec.php';
+require_once dirname(__FILE__) . '/encdec.php';
 
 
 if (isset($_GET['activecode'])) {
 
         //*Senitize the data
-        $senitize=new validateForm();
-        $code=$senitize->test_input($_GET['activecode']);
-        $code=$_GET['activecode'];
-        $code=hex2bin($code);
+        $senitize = new validateForm();
+        $code = $senitize->test_input($_GET['activecode']);
+        $code = $_GET['activecode'];
+        $code = hex2bin($code);
 
         //* Decode the data
-        $decode=new encdec();
-        $code=$decode->dec($code);
-    
-        
+        $decode = new encdec();
+        $code = $decode->dec($code);
+
+
 
         $user = new user();
         if ($user->updatedata($code)) {

@@ -1,6 +1,7 @@
 <?php
 
 namespace app;
+
 require_once dirname(__FILE__) . '/user.php';
 class sendGridApi
 {
@@ -34,19 +35,17 @@ class sendGridApi
                         'x-smtpapi' => json_encode($this->js),
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
-                $response=curl_exec($this->session);
+                $response = curl_exec($this->session);
                 curl_close($this->session);
-                if(strpos($response, 'success')){
+                if (strpos($response, 'success')) {
                         return true;
-                }
-                else{
+                } else {
                         //* If varification mail can't be sent then delete the data
-                        $deleteUser=new User();
+                        $deleteUser = new User();
                         $deleteUser->deletedata($email);
                 }
-                
         }
-          public function comicSender($email, $body, $subject, $file)
+        public function comicSender($email, $body, $subject, $file)
         {
                 $fileName = basename($file);
                 $filePath = dirname(__FILE__);
@@ -60,12 +59,9 @@ class sendGridApi
                         'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
-                $response=curl_exec($this->session);
+                $response = curl_exec($this->session);
                 curl_close($this->session);
                 unlink($file);
-                return $response? true:false;
-                
-             
+                return $response ? true : false;
         }
-      
 }

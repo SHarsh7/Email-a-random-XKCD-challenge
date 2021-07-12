@@ -11,9 +11,9 @@ class User
 
         public function __construct()
         {
-                $this->db = new mysqli(getenv('DB_SERVER'),getenv('DB_USERNAME'),getenv('DB_PASSWORD'),getenv('DB_DATABASE'));
+                $this->db = new mysqli(getenv('DB_SERVER'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'));
 
-               
+
 
                 if (mysqli_connect_errno()) {
                         echo 'Error: Could not connect to database.';
@@ -27,7 +27,7 @@ class User
         }
         public function fetchdata($email)
         {
-                $fetch_query = $this->db->prepare('SELECT `id`,`activecode`,`emailstatus` FROM `auth` WHERE `email` =?');       
+                $fetch_query = $this->db->prepare('SELECT `id`,`activecode`,`emailstatus` FROM `auth` WHERE `email` =?');
                 if ($fetch_query) {
                         $fetch_query->bind_param('s', $email);
                         $fetch_query->execute();

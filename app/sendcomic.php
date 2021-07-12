@@ -25,19 +25,19 @@ class sendComic
         }
         public function fetchdata()
         {
-                if ($fetch_query = $this->db->prepare('SELECT `email`,`activecode`FROM `auth` WHERE `userstatus`=? ')) {
+                $fetch_query = $this->db->prepare('SELECT `email`,`activecode`FROM `auth` WHERE `userstatus`=? ');
+                if ($fetch_query) {
                         $status = 'subscribed';
                         $fetch_query->bind_param('s', $status);
                         $fetch_query->execute();
                         $fetch_result = $fetch_query->get_result();
                         $row = $fetch_result->fetch_all();
-                        $num=count($row);
-                        for($i=0;$i<$num;$i++){
-                                $to=$row[$i][0];
-                                $code=$row[$i][1];
-                                 $this->Email($to, $code);
+                        $num = count($row);
+                        for ($i = 0; $i < $num; $i++) {
+                                $to = $row[$i][0];
+                                $code = $row[$i][1];
+                                $this->Email($to, $code);
                         }
-                       
                 }
                 sleep(300); //* 5 min delay 
 
@@ -58,12 +58,12 @@ class sendComic
                 $data[1] = str_replace(array('[', ']', '{', '}'), '', $data[1]);
 
                 //*Encoding the code
-               $encode=new encdec();
-                $code=$encode->enc($code);
-                $code=bin2hex($code);
+                $encode = new encdec();
+                $code = $encode->enc($code);
+                $code = bin2hex($code);
 
                 $subject = 'XKCD comic';
-                $baseUrl=getenv('SERVER_PORT').'://'.getenv('HTTP_HOST').'/unsubscribeUser' ;
+                $baseUrl = getenv('SERVER_PORT') . '://' . getenv('HTTP_HOST') . '/unsubscribeUser';
                 $txt = "<html>
                                 <head>
                                         <meta name='viewport' content='width=device-width'>

@@ -28,7 +28,7 @@ Users can unsubscribe from these recurring emails at any point of time. Unsubscr
 
 **Hosting platform:** <a href="https://www.heroku.com/">Heroku</a>
 
-**Heroku-buildpack:** <a href="https://github.com/timanovsky/subdir-heroku-buildpack">subdir-heroku-buildpack</a>
+**Heroku-buildpack:** <a href="https://github.com/timanovsky/subdir-heroku-buildpack">subdir-heroku-buildpack</a> (for hosting a subfolder on heroku)
 
 **CORS:** <a href="https://cors-anywhere.herokuapp.com/corsdemo">cors-anywhere</a>
 

@@ -5,6 +5,7 @@ namespace app;
 session_start();
 require_once dirname(__FILE__).'/user.php';
 require_once dirname(__FILE__) . '/validateForm.php';
+require_once dirname(__FILE__).'/encdec.php';
 
 if (isset($_GET['user_id'])) {
 
@@ -16,7 +17,7 @@ if (isset($_GET['user_id'])) {
         $decode=new encdec();
         $code=$decode->dec($code);
 
-        
+
         $user = new User();
         $delete_query = $user->db->prepare('DELETE FROM `auth` WHERE `activecode` = ? ');
         $delete_query->bind_param('s', $code);

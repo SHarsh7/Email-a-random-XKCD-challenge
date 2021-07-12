@@ -2,7 +2,6 @@
 
 namespace app;
 
-use encdec;
 
 require_once dirname(__FILE__) . '/user.php';
 require_once dirname(__FILE__) . '/validateForm.php';
@@ -15,13 +14,11 @@ if (isset($_GET['activecode'])) {
         $senitize=new validateForm();
         // $code=$senitize->test_input($_GET['activecode']);
         $code=$_GET['activecode'];
-        var_dump($code);
         $code=hex2bin($code);
-        var_dump($code);
+
         //* Decode the data
         $decode=new encdec();
         $code=$decode->dec($code);
-         var_dump($code);
     
         
 

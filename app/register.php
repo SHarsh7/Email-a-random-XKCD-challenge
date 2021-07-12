@@ -1,7 +1,6 @@
 <?php
 namespace app;
 
-use encdec;
 
 require_once dirname(__FILE__).'/user.php';
 include dirname(__FILE__).'/validateForm.php';

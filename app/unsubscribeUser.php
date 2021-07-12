@@ -12,7 +12,11 @@ if (isset($_GET['user_id'])) {
         $senitize=new validateForm();
         $code=$senitize->test_input($_GET['user_id']);
         //* Decoding the data
-        $code=base64_decode($code);
+        $code=hex2bin($code);
+        $decode=new encdec();
+        $code=$decode->dec($code);
+
+        
         $user = new User();
         $delete_query = $user->db->prepare('DELETE FROM `auth` WHERE `activecode` = ? ');
         $delete_query->bind_param('s', $code);

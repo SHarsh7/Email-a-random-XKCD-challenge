@@ -7,6 +7,7 @@ use mysqli;
 
 require_once dirname(__FILE__) . '/XKCDapi.php';
 require_once dirname(__FILE__) . '/sendGridApi.php';
+require_once dirname(__FILE__) . '/encdec.php';
 
 
 class sendComic
@@ -57,7 +58,10 @@ class sendComic
                 $data[1] = str_replace(array('[', ']', '{', '}'), '', $data[1]);
 
                 //*Encoding the code
-                $code = base64_encode($code);
+               $encode=new encdec();
+                $code=$encode->enc($code);
+                $code=bin2hex($code);
+
                 $subject = 'XKCD comic';
                 $baseUrl=getenv('SERVER_PORT').'://'.getenv('HTTP_HOST').'/unsubscribeUser' ;
                 $txt = "<html>

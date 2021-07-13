@@ -1,4 +1,4 @@
-# Email a random XKCD challenge
+# Email a random XKCD challenge (with tests)
 
 ### project link:
 

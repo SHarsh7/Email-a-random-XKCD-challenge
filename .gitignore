@@ -1,7 +1,5 @@
 db_config.php
 /.phpunit.cache
 .phpunit.result.cache
-vendor
-composer.lock
-phpunit.xml
+vendor/
 

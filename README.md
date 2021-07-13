@@ -1,6 +1,6 @@
 # Email a random XKCD challenge (with tests)
 
-### project link:
+### Project link:http://xkcdmailer.herokuapp.com/
 
 It's a simple PHP application that accepts visitor's email addresses and quickly sends a verification mail user.The user can verify himself by clicking on the link provided in that email.
 once the user is verified this web app sends a random XKCD webcomic to the provided email id every 5 minutes.

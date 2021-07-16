@@ -1,8 +1,8 @@
 # Email a random XKCD challenge
 
-### poject link:
+### project link:
 
-It's a simple PHP application that accepts visitor's email addresses and quickly sends a verification mail user.The user can verify himself by clicking on the link provided in that email.
+It's a simple PHP application that accepts visitor's email addresses and quickly sends a verification mail to the user.The user can verify himself by clicking on the link provided in that email.
 once the user is verified this web app sends a random XKCD webcomic to the provided email id every 5 minutes.
 The comic is sent as an email attachment as well as inline image content.
 Users can unsubscribe from these recurring emails at any point of time. Unsubscribe link is sent with the comic e-mail itself.
@@ -80,4 +80,4 @@ To run tests, run the following command
 
 ## Limitations
 
-Talking about the limitations of this project here I have taken the help of Heroku procfile's worker functionality to execute "sendcomic.php" recursively. Which takes the help of ''sleep'' to delay the execution for 5 minutes. Sleep has its own limitations & it's obviously not as efficient as add-ons like Heroku scheduler.
+Talking about the limitations of this project here I have taken the help of Heroku procfile's worker functionality to execute "sendcomic.php" recursively. Which in turn takes the help of ''sleep'' to delay the execution for 5 minutes. Sleep has its limitations & it's not as efficient as add-ons like Heroku scheduler.

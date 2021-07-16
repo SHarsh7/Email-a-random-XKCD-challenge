@@ -66,7 +66,7 @@ class sendGridApi
                                 ' filename' => 'logo2',
                                 'type' => 'image/png',
                                 'content_id' => 'logo',
-                                'content' => file_get_contents($file),
+                                'content' => $file,
                                 'disposition' => 'inline',
                         )),
                         'type' => 'image/png',

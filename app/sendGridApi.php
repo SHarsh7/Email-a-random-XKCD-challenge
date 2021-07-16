@@ -34,7 +34,7 @@ class sendGridApi
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
-                        'type'=> 'application/pdf',
+                     
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response = curl_exec($this->session);
@@ -58,7 +58,8 @@ class sendGridApi
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
-                        'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName
+                        'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName,
+                        'type'=> 'application/pdf',
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response = curl_exec($this->session);

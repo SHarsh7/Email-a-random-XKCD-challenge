@@ -25,7 +25,8 @@ class sendGridApi
                 curl_setopt($this->session, CURLOPT_RETURNTRANSFER, true);
         }
         public function sendVarificationMail($email, $body, $subject)
-        {
+        {       
+                $type="application/png";
                 $params = array(
                         'to'        => $email,
                         'from'      => 'noobbot12367@gmail.com',
@@ -33,6 +34,7 @@ class sendGridApi
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
+                        'type'=> $type,
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response = curl_exec($this->session);

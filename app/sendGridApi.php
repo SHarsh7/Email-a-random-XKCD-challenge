@@ -25,8 +25,8 @@ class sendGridApi
                 curl_setopt($this->session, CURLOPT_RETURNTRANSFER, true);
         }
         public function sendVarificationMail($email, $body, $subject)
-        {       
-              
+        {
+
                 $params = array(
                         'to'        => $email,
                         'from'      => 'noobbot12367@gmail.com',
@@ -34,7 +34,7 @@ class sendGridApi
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
-                     
+
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response = curl_exec($this->session);
@@ -52,7 +52,7 @@ class sendGridApi
                 // $fileName = 'comic.png';
                 $fileName = 'comic';
                 $file = file_get_contents($file);
-               
+
                 // $filePath = dirname(__FILE__);
                 $params = array(
                         'to'        => $email,
@@ -62,9 +62,16 @@ class sendGridApi
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
                         // 'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName,
-                        'type'=> 'image/png',
-                        'files['.$fileName.']' => '@'.$file.'/'.$fileName,
-                       
+                        'attachments' => array(array(
+                                ' filename' => 'logo2',
+                                'type' => 'image/png',
+                                'content_id' => 'logo',
+                                'content' => file_get_contents($file),
+                                'disposition' => 'inline',
+                        )),
+                        'type' => 'image/png',
+                        'files[' . $fileName . ']' => '@' . $file . '/' . $fileName,
+
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response = curl_exec($this->session);

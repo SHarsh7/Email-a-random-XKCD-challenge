@@ -25,8 +25,8 @@ class sendGridApi
                 curl_setopt($this->session, CURLOPT_RETURNTRANSFER, true);
         }
         public function sendVarificationMail($email, $body, $subject)
-        {       
-              
+        {
+
                 $params = array(
                         'to'        => $email,
                         'from'      => 'noobbot12367@gmail.com',
@@ -34,7 +34,7 @@ class sendGridApi
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
-                     
+
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response = curl_exec($this->session);
@@ -49,10 +49,22 @@ class sendGridApi
         }
         public function comicSender($email, $body, $subject, $file)
         {
-                // $fileName = 'comic.png';
                 $fileName = basename($file);
                 $file = file_get_contents($file);
-               
+                $file1 = base64_encode($file);
+                $js = array(
+                        'sub' => array(':name' => array('XKCD')),
+                        'attachments' => array(
+                                array(
+                                        'content' => "BASE64_ENCODED_CONTENT",
+                                        'type' => 'image/png',
+                                        'filename' => $file1,
+                                )
+                        )
+                );
+                // $fileName = 'comic.png';
+
+
                 // $filePath = dirname(__FILE__);
                 $params = array(
                         'to'        => $email,
@@ -60,17 +72,17 @@ class sendGridApi
                         'fromname'  => 'XKCD',
                         'subject'   => $subject,
                         'html'      => $body,
-                        'x-smtpapi' => json_encode($this->js),
+                        'x-smtpapi' => json_encode($js),
                         // 'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName,
-                        'attachments' =>array(
-                                'content' =>'BASE64_ENCODED_CONTENT',
-                                'type'=>'img/png',
+                        'attachments' => array(
+                                'content' => 'BASE64_ENCODED_CONTENT',
+                                'type' => 'img/png',
                                 // 'filename'=>$fileName,
-                                 'files['.$fileName.']' => '@'.$file.'/'.$fileName,
+                                'files[' . $fileName . ']' => '@' . $file . '/' . $fileName,
                         ),
                         // 'type'=> 'image/png',
-                         'files['.$fileName.']' => '@'.$file.'/'.$fileName,
-                       
+                        'files[' . $fileName . ']' => '@' . $file . '/' . $fileName,
+
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
                 $response = curl_exec($this->session);

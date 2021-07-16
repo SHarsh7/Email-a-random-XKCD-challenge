@@ -50,7 +50,7 @@ class sendGridApi
         public function comicSender($email, $body, $subject, $file)
         {
                 // $fileName = 'comic.png';
-                $fileName = basename($file);
+                $fileName = 'comic';
                 $file = file_get_contents($file);
                
                 // $filePath = dirname(__FILE__);

@@ -5,7 +5,7 @@ namespace app;
 require_once dirname(__FILE__) . '/user.php';
 class sendGridApi
 {
-        private $session, $name = "XKCD";
+        private $session;
         public function __construct()
         {
                 $sendgrid_apikey = getenv('sendgrid_apikey');
@@ -30,14 +30,13 @@ class sendGridApi
                                         "to" => array(
                                                 array(
                                                         "email" => $email,
-                                                        "name" => $this->name
                                                 )
                                         )
                                 )
                         ),
                         "from" => array(
                                 "email" => "noobbot12367@gmail.com",
-                                'fromname'  => 'XKCD'
+                                'name'  => 'XKCD'
                         ),
                         "subject" => $subject,
                         "content" => array(
@@ -68,13 +67,13 @@ class sendGridApi
                                         "to" => array(
                                                 array(
                                                         "email" => $email,
-                                                        "name" => $this->name
                                                 )
                                         )
                                 )
                         ),
                         "from" => array(
-                                "email" => "noobbot12367@gmail.com"
+                                "email" => "noobbot12367@gmail.com",
+                                'name'=>'XKCD',
                         ),
                         "subject" => $subject,
                         "content" => array(

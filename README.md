@@ -1,9 +1,9 @@
-# Email a random XKCD challenge
+# Email a random XKCD challenge (with tests)
 
-### project link:
+### Project link: http://xkcdmailer.herokuapp.com/
 
 It's a simple PHP application that accepts visitor's email addresses and quickly sends a verification mail to the user.The user can verify himself by clicking on the link provided in that email.
-once the user is verified this web app sends a random XKCD webcomic to the provided email id every 5 minutes.
+Once the user is verified this web app sends a random XKCD webcomic to the provided email id every 5 minutes.
 The comic is sent as an email attachment as well as inline image content.
 Users can unsubscribe from these recurring emails at any point of time. Unsubscribe link is sent with the comic e-mail itself.
 
@@ -31,6 +31,8 @@ Users can unsubscribe from these recurring emails at any point of time. Unsubscr
 **Server:** PHP
 
 **API:** <a href="https://sendgrid.com/solutions/email-api/">Sendgrid</a>, <a href="https://xkcd.com/">XKCD</a>
+
+**Database:** <a href="https://remotemysql.com/">remote my sql</a>
 
 **Hosting platform:** <a href="https://www.heroku.com/">Heroku</a>
 

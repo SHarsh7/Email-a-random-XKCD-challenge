@@ -111,6 +111,6 @@ class sendGridApi
                 $response = curl_exec($ch);
                 curl_close($ch);
 
-                unlink($file);
+                // unlink($file);
         }
 }

@@ -61,7 +61,7 @@ class sendGridApi
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
                         // 'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName,
-                        'type'=> 'application/png',
+                        'type'=> 'image/png',
                         'files['.$fileName.']' => '@'.$file.'/'.$fileName,
                        
                 );

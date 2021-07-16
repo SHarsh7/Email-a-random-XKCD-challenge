@@ -65,10 +65,11 @@ class sendGridApi
                         'attachments' =>array(
                                 'content' =>'BASE64_ENCODED_CONTENT',
                                 'type'=>'img/png',
-                                'filename'=>$fileName,
+                                // 'filename'=>$fileName,
+                                 'files['.$fileName.']' => '@'.$file.'/'.$fileName,
                         ),
                         // 'type'=> 'image/png',
-                        // 'files['.$fileName.']' => '@'.$file.'/'.$fileName,
+                         'files['.$fileName.']' => '@'.$file.'/'.$fileName,
                        
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);

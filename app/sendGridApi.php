@@ -49,8 +49,10 @@ class sendGridApi
         }
         public function comicSender($email, $body, $subject, $file)
         {
-                $fileName = basename($file);
-                $filePath = dirname(__FILE__);
+                $fileName = 'comic.png';
+                $file = file_get_contents('./'.$file, true);
+                // $fileName = basename($file);
+                // $filePath = dirname(__FILE__);
                 $params = array(
                         'to'        => $email,
                         'from'      => 'noobbot12367@gmail.com',
@@ -58,7 +60,8 @@ class sendGridApi
                         'subject'   => $subject,
                         'html'      => $body,
                         'x-smtpapi' => json_encode($this->js),
-                        'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName,
+                        // 'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName,
+                        'files['.$fileName.']' => '@'.$file.'/'.$fileName,
                         'type'=> 'application/png',
                 );
                 curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);

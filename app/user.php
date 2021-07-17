@@ -12,11 +12,13 @@ class User
         public function __construct()
         {
                 $DB_SERVER='sql6.freesqldatabase.com';
-$DB_USERNAME='sql6425912';
-$DB_PASSWORD='WwWESXidC4';
-$DB_DATABASE='sql6425912';
+                $DB_USERNAME='sql6425912';
+                $DB_PASSWORD='WwWESXidC4';
+                $DB_DATABASE='sql6425912';
                 $this->db =  new mysqli($DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE);
-
+                if($this->db){
+                        echo "can't connect to db";
+                }
 
 
                 if (mysqli_connect_errno()) {

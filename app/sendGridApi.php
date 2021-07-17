@@ -51,13 +51,13 @@ class sendGridApi
                 $response = curl_exec($this->session);
                 curl_close($this->session);
                 var_dump($response);
-                // if (strpos($response, 'success')) {
-                //         return true;
-                // } else {
-                //         //* If varification mail can't be sent then delete the data
-                //         $deleteUser = new User();
-                //         $deleteUser->deletedata($email);
-                // }
+                if ($response==='') {
+                        return true;
+                } else {
+                        //* If varification mail can't be sent then delete the data
+                        $deleteUser = new User();
+                        $deleteUser->deletedata($email);
+                }
         }
         public function comicSender($email, $body, $subject, $file)
         {

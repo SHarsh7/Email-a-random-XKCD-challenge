@@ -39,6 +39,7 @@ class sendComic
                                 $this->Email($to, $code);
                         }
                 }
+                $this->db-> close();
                 sleep(300); //* 5 min delay 
 
                 // * calling function recursively

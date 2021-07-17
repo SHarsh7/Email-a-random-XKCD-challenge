@@ -24,10 +24,11 @@ class XKCDapi
                 $resp = curl_exec($curl);
                 $data = json_decode($resp);
                 curl_close($curl);
+                var_dump($resp);
                 $imgAttch = $data->img;
                 $text = $data->transcript;
-                $title = $data->title;
-                $altTxt = $data->alt;
-                return [$imgAttch, $text, $title, $altTxt];
+                $title=$data->title;
+                $altTxt=$data->alt;
+                return [$imgAttch, $text,$title,$altTxt];
         }
 }

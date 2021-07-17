@@ -13,7 +13,7 @@ class User
         {
                 $this->db = new mysqli(getenv('DB_SERVER'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'));
 
-
+                echo $this->db;
 
                 if (mysqli_connect_errno()) {
                         echo 'Error: Could not connect to database.';

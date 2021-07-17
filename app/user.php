@@ -82,4 +82,8 @@ class User
                         return false;
                 }
         }
+        public function __destruct() 
+        {
+                $this->db-> close();
+         }
 }

@@ -81,7 +81,7 @@ class User
         public function reg_user($email)
         {
                 //checking if the username or email is available in db
-
+                echo "in reg user";
                 $fetch_result = $this->fetchdata($email);
                 $count_row = $fetch_result->num_rows;
 

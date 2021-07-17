@@ -41,7 +41,9 @@ class User
                 if ($insert_query) {
                         $insert_query->bind_param('ss', $email, $code);
                         $insert_result = $insert_query->execute();
+                        var_dump($insert_result);
                         return $insert_result;
+                        
                 }
                 else{
                         echo "insertion failed";

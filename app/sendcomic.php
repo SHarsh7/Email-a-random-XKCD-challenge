@@ -107,6 +107,10 @@ class sendComic
                 $senduser = new sendGridApi();
                 $senduser->comicSender($reciever, $txt, $subject, $file);
         }
+        public function __destruct() 
+        {
+                $this->db-> close();
+         }
 }
 $subscriber = new sendComic();
 $subscriber->fetchdata();

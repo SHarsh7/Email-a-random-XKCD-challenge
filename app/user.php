@@ -11,10 +11,11 @@ class User
 
         public function __construct()
         {
-                $DB_SERVER='sql6.freesqldatabase.com';
-                $DB_USERNAME='sql6425912';
-                $DB_PASSWORD='WwWESXidC4';
-                $DB_DATABASE='sql6425912';
+
+                $DB_SERVER='sql6.freemysqlhosting.net';
+                $DB_USERNAME='sql6425905';
+                $DB_PASSWORD='VW33MZZSpT';
+                $DB_DATABASE='ssql6425905';
                 $this->db =  new mysqli($DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE);
                 if($this->db){
 

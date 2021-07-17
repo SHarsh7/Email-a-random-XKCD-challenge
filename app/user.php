@@ -43,6 +43,9 @@ class User
                         $insert_result = $insert_query->execute();
                         return $insert_result;
                 }
+                else{
+                        echo "insertion failed";
+                }
         }
         public function deletedata($email)
         {

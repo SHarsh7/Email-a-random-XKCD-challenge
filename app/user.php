@@ -17,7 +17,8 @@ class User
                 $DB_DATABASE='sql6425912';
                 $this->db =  new mysqli($DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE);
                 if($this->db){
-                        echo "can't connect to db";
+                        var_dump($this->db);
+                        echo "connect to db";
                 }
 
 
@@ -48,6 +49,8 @@ class User
                         $insert_query->bind_param('ss', $email, $code);
                         $insert_result = $insert_query->execute();
                         var_dump($insert_result);
+                        var_dump($this->fetchdata($email));
+
                         return $insert_result;
                         
                 }

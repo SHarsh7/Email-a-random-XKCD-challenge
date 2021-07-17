@@ -50,8 +50,8 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         <p>$baseUrl/$activecode</p>  
                                                         </body>
                                                  </html>";
-                                $variEmail = new sendGridApi();
-                                $variEmail->sendVarificationMail($email, $body, $subject);
+                                // $variEmail = new sendGridApi();
+                                // $variEmail->sendVarificationMail($email, $body, $subject);
                         } else {
                                 $_SESSION['msg'] = 'You are already registered!';
                         }

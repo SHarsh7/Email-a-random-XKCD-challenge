@@ -50,7 +50,6 @@ class sendGridApi
 
                 $response = curl_exec($this->session);
                 curl_close($this->session);
-                var_dump($response);
                 if ($response==='') {
                         return true;
                 } else {

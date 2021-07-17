@@ -1,71 +1,103 @@
 <?php
 
 namespace app;
+
 require_once dirname(__FILE__) . '/user.php';
 class sendGridApi
 {
-
-
-        private $url = 'https://api.sendgrid.com/api/mail.send.json';
         private $session;
-        private $js = array(
-                'sub' => array(':name' => array('XKCD')),
-        );
-
-
         public function __construct()
         {
                 $sendgrid_apikey = getenv('sendgrid_apikey');
-                $this->session = curl_init($this->url);
-                curl_setopt($this->session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
-                curl_setopt($this->session, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $sendgrid_apikey));
-                curl_setopt($this->session, CURLOPT_POST, true);
-                curl_setopt($this->session, CURLOPT_HEADER, false);
+                $headers = array(
+                        "Authorization: Bearer $sendgrid_apikey",
+                        'Content-Type: application/json'
+                );
+                $this->session = curl_init();
+                curl_setopt($this->session, CURLOPT_URL, "https://api.sendgrid.com/v3/mail/send");
+                curl_setopt($this->session, CURLOPT_POST, 1);
+                curl_setopt($this->session, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($this->session, CURLOPT_FOLLOWLOCATION, true);
                 curl_setopt($this->session, CURLOPT_RETURNTRANSFER, true);
         }
         public function sendVarificationMail($email, $body, $subject)
         {
-                $params = array(
-                        'to'        => $email,
-                        'from'      => 'noobbot12367@gmail.com',
-                        'fromname'  => 'XKCD',
-                        'subject'   => $subject,
-                        'html'      => $body,
-                        'x-smtpapi' => json_encode($this->js),
+
+
+                $data = array(
+                        "personalizations" => array(
+                                array(
+                                        "to" => array(
+                                                array(
+                                                        "email" => $email,
+                                                )
+                                        )
+                                )
+                        ),
+                        "from" => array(
+                                "email" => "noobbot12367@gmail.com",
+                                'name'  => 'XKCD'
+                        ),
+                        "subject" => $subject,
+                        "content" => array(
+                                array(
+                                        "type" => "text/html",
+                                        "value" => $body
+                                )
+                        ),
                 );
-                curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
-                $response=curl_exec($this->session);
+                curl_setopt($this->session, CURLOPT_POSTFIELDS, json_encode($data));
+
+                $response = curl_exec($this->session);
                 curl_close($this->session);
-                if(strpos($response, 'success')){
-                        return true;
-                }
-                else{
-                        //* If varification mail can't be sent then delete the data
-                        $deleteUser=new User();
-                        $deleteUser->deletedata($email);
-                }
-                
+                var_dump($response);
+                // if (strpos($response, 'success')) {
+                //         return true;
+                // } else {
+                //         //* If varification mail can't be sent then delete the data
+                //         $deleteUser = new User();
+                //         $deleteUser->deletedata($email);
+                // }
         }
-          public function comicSender($email, $body, $subject, $file)
+        public function comicSender($email, $body, $subject, $file)
         {
-                $fileName = basename($file);
-                $filePath = dirname(__FILE__);
-                $params = array(
-                        'to'        => $email,
-                        'from'      => 'noobbot12367@gmail.com',
-                        'fromname'  => 'XKCD',
-                        'subject'   => $subject,
-                        'html'      => $body,
-                        'x-smtpapi' => json_encode($this->js),
-                        'files[' . $fileName . ']' => '@' . $filePath . '/' . $fileName
+                $content = base64_encode(file_get_contents($file));
+                $data = array(
+                        "personalizations" => array(
+                                array(
+                                        "to" => array(
+                                                array(
+                                                        "email" => $email,
+                                                )
+                                        )
+                                )
+                        ),
+                        "from" => array(
+                                "email" => "noobbot12367@gmail.com",
+                                'name'=>'XKCD',
+                        ),
+                        "subject" => $subject,
+                        "content" => array(
+                                array(
+                                        "type" => "text/html",
+                                        "value" => $body
+                                )
+                        ),
+                        "attachments" => array(
+                                array(
+                                        "content" => $content,
+                                        "type" => "text/plain",
+                                        "filename" => basename($file)
+                                )
+                        )
                 );
-                curl_setopt($this->session, CURLOPT_POSTFIELDS, $params);
-                $response=curl_exec($this->session);
+                curl_setopt($this->session, CURLOPT_POSTFIELDS, json_encode($data));
+
+
+
+                $response = curl_exec($this->session);
                 curl_close($this->session);
                 unlink($file);
-                return $response? true:false;
-                
-             
+                return $response ? true : false;
         }
-      
 }

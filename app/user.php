@@ -85,11 +85,18 @@ class User
                 echo "in reg user";
                 $fetch_result = $this->fetchdata($email);
                 $count_row = $fetch_result->num_rows;
-
+                var_dump($count_row);
                 //if the username is not in db then insert to the table
                 if ($count_row == 0) {
+                        echo "in if cond";
                         $code = $this->codeGen();
+                        if($code){
+                                echo "code";
+                        }
                         $result = $this->insertdata($email, $code);
+                        if($result){
+                                echo "result";
+                        }
                         return $result;
                 } else {
                         return false;

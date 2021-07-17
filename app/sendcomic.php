@@ -102,9 +102,7 @@ class sendComic
                                 </body>
                          </html>";
                 $file = basename($data[0]);
-                $url="$data[0]";
-                file_put_contents($file, file_get_contents($url));
-                
+                file_put_contents($file, file_get_contents($data[0]));
 
                 $senduser = new sendGridApi();
                 $senduser->comicSender($reciever, $txt, $subject, $file);

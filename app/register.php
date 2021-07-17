@@ -59,5 +59,5 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 }
 $url = 'http' . ((isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443) ? 's' : '') . '://' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '')  . '/index';
-// echo "<script> location.href='$url'; </script>";
+echo "<script> location.href='$url'; </script>";
 die();

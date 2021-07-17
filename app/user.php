@@ -17,7 +17,7 @@ class User
                 $DB_DATABASE='sql6425912';
                 $this->db =  new mysqli($DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE);
                 if($this->db){
-                        var_dump($this->db);
+
                         echo "connect to db";
                 }
 
@@ -44,6 +44,7 @@ class User
         }
         public function insertdata($email, $code)
         {
+                echo "in insert data";
                 $insert_query = $this->db->prepare('INSERT INTO `auth` (`email`, `activecode`) VALUES (?,?)');
                 if ($insert_query) {
                         $insert_query->bind_param('ss', $email, $code);

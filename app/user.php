@@ -11,7 +11,11 @@ class User
 
         public function __construct()
         {
-                $this->db = new mysqli(getenv('DB_SERVER'), getenv('DB_USERNAME'), getenv('DB_PASSWORD'), getenv('DB_DATABASE'));
+                $DB_SERVER='sql6.freesqldatabase.com';
+$DB_USERNAME='sql6425912';
+$DB_PASSWORD='WwWESXidC4';
+$DB_DATABASE='sql6425912';
+                $this->db =  new mysqli($DB_SERVER, $DB_USERNAME, $DB_PASSWORD,$DB_DATABASE);
 
 
 

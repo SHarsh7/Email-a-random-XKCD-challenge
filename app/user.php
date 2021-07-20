@@ -55,9 +55,9 @@ class User
         public function updatedata($code)
         {
 
-                $update_query = $this->db->prepare("UPDATE auth SET  emailstatus = 'verified' , userstatus='subscribed' WHERE activecode = ?");
+                $update_query = $this->db->prepare("UPDATE auth SET  emailstatus =?, userstatus=? WHERE activecode = ?");
                 if ($update_query) {
-                        $update_query->bind_param('s', $code);
+                        $update_query->bind_param('sss','verified','subscribed',$code);
                         $update_result = $update_query->execute();
                         return $update_result;
                 }

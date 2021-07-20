@@ -7,8 +7,9 @@ class XKCDapi
 
         public function fetchComic()
         {
-                $number = rand(1, 1000);
-                $url = "https://xkcd.com/$number/info.0.json";
+                $fetchurl = "https://c.xkcd.com/random/comic/";
+                $headers = get_headers($fetchurl, 1);
+                $url=$headers['Location'][1].'info.0.json';
 
                 $curl = curl_init($url);
                 curl_setopt($curl, CURLOPT_URL, $url);

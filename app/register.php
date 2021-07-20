@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                         </head>
                                                         <body>
                                                         <p>Hi,$emailUser</p>
-                                                        <p>Thank you for showing interest in our product now after you click on the link given below, you will start receiving our emails(A random XKCD webcomic) every 5 minutes, this may take a while(around 5 to 6 minutes or earlier). So take a deep breath and enjoy.</p>
+                                                        <p>Thank you for showing interest in our product now after you click on the link given below, you will start receiving our emails (A random XKCD webcomic) every 5 minutes, this may take a while (around 5 to 6 minutes or earlier). So take a deep breath and enjoy.</p>
 
                                                         <p style='margin-bottom:10px;font-weight:normal;font-size:14px;line-height:1.6;padding:15px;background-color:#ecf8ff;margin-bottom:15px;'>Please click on the link to verify yourself 
                                                         <a href='$baseUrl/$activecode'>Subscribe</a>

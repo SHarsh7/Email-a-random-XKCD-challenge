@@ -35,8 +35,8 @@ class sendGridApi
                                 )
                         ),
                         "from" => array(
-                                "email" => "noobbot12367@gmail.com",
-                                'name'  => 'XKCD'
+                                'email' => getenv('sender_email'),
+                                'name'  => getenv('sender_name')
                         ),
                         "subject" => $subject,
                         "content" => array(

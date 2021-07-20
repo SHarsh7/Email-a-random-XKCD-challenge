@@ -10,8 +10,8 @@ require_once dirname(__FILE__).'/encdec.php';
 if (isset($_GET['user_id'])) {
 
             //*Senitize the data
-        $senitize=new validateForm();
-        $code=$senitize->test_input($_GET['user_id']);
+        $sanitize=new validateForm();
+        $code=$sanitize->test_input($_GET['user_id']);
         //* Decoding the data
         $code=hex2bin($code);
         $decode=new encdec();

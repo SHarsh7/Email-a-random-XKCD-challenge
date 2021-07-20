@@ -1,4 +1,4 @@
 db_config.php
 /.phpunit.cache
 .phpunit.result.cache
-/vendor/**/.git
+/vendor/

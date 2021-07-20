@@ -57,7 +57,9 @@ class User
 
                 $update_query = $this->db->prepare("UPDATE auth SET  emailstatus =?, userstatus=? WHERE activecode = ?");
                 if ($update_query) {
-                        $update_query->bind_param('sss','verified','subscribed',$code);
+                        $emailstatus='verified';
+                        $userstatus='subscribed';
+                        $update_query->bind_param('sss',$emailstatus,$userstatus,$code);
                         $update_result = $update_query->execute();
                         return $update_result;
                 }

@@ -14,7 +14,7 @@ class sendGridApi
                         'Content-Type: application/json'
                 );
                 $this->session = curl_init();
-                curl_setopt($this->session, CURLOPT_URL, "https://api.sendgrid.com/v3/mail/send");
+                curl_setopt($this->session, CURLOPT_URL, 'https://api.sendgrid.com/v3/mail/send');
                 curl_setopt($this->session, CURLOPT_POST, 1);
                 curl_setopt($this->session, CURLOPT_HTTPHEADER, $headers);
                 curl_setopt($this->session, CURLOPT_FOLLOWLOCATION, true);
@@ -25,24 +25,24 @@ class sendGridApi
 
 
                 $data = array(
-                        "personalizations" => array(
+                        'personalizations' => array(
                                 array(
-                                        "to" => array(
+                                        'to' => array(
                                                 array(
-                                                        "email" => $email,
+                                                        'email' => $email,
                                                 )
                                         )
                                 )
                         ),
-                        "from" => array(
+                        'from' => array(
                                 'email' => getenv('sender_email'),
                                 'name'  => getenv('sender_name')
                         ),
-                        "subject" => $subject,
-                        "content" => array(
+                        'subject' => $subject,
+                        'content' => array(
                                 array(
-                                        "type" => "text/html",
-                                        "value" => $body
+                                        'type' => 'text/html',
+                                        'value' => $body
                                 )
                         ),
                 );
@@ -62,31 +62,31 @@ class sendGridApi
         {
                 $content = base64_encode(file_get_contents($file));
                 $data = array(
-                        "personalizations" => array(
+                        'personalizations' => array(
                                 array(
-                                        "to" => array(
+                                        'to' => array(
                                                 array(
-                                                        "email" => $email,
+                                                        'email' => $email,
                                                 )
                                         )
                                 )
                         ),
-                        "from" => array(
-                                "email" => "noobbot12367@gmail.com",
+                        'from' => array(
+                                'email' => 'noobbot12367@gmail.com',
                                 'name'=>'XKCD',
                         ),
-                        "subject" => $subject,
-                        "content" => array(
+                        'subject' => $subject,
+                        'content' => array(
                                 array(
-                                        "type" => "text/html",
-                                        "value" => $body
+                                        'type' => 'text/html',
+                                        'value' => $body
                                 )
                         ),
-                        "attachments" => array(
+                        'attachments' => array(
                                 array(
-                                        "content" => $content,
-                                        "type" => "text/plain",
-                                        "filename" => basename($file)
+                                        'content' => $content,
+                                        'type' => 'text/plain',
+                                        'filename' => basename($file)
                                 )
                         )
                 );

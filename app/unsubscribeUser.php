@@ -9,7 +9,7 @@ require_once dirname(__FILE__).'/encdec.php';
 
 if (isset($_GET['user_id'])) {
 
-            //*Senitize the data
+            //*Sanitize the data
         $sanitize=new validateForm();
         $code=$sanitize->test_input($_GET['user_id']);
         //* Decoding the data

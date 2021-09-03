@@ -40,10 +40,6 @@ Users can unsubscribe from these recurring emails at any point of time. Unsubscr
 
 **CORS:** <a href="https://cors-anywhere.herokuapp.com/corsdemo">cors-anywhere</a>
 
-## Work-flow
-
-<img src="./app/Assets/Images/workflow.png" width="700px" height="450px" alt="can't">
-
 ## Environment Variables
 
 To run this project, you will need to add the following environment variables to your .env file or as config variables in your hosting service

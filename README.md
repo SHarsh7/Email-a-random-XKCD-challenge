@@ -1,4 +1,4 @@
-# Email a random XKCD challenge (with tests)
+# Webcomic Mailer (with tests)
 
 ### live demo URL: http://xkcdmailer.herokuapp.com/
 
